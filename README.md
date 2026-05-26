@@ -1,12 +1,10 @@
-# VR Project
-
-大学の VR 授業における最終課題の共同作業用 Unity プロジェクトです。
-
 ## このプロジェクトについて
 
 このプロジェクトは、以下の授業資料を参考に、資料内の手順を最後まで進めた状態のファイルです。
 
-- [授業資料（Google Slides）](https://docs.google.com/presentation/d/1hqpBQY4AmpkIB0ocIzcZ5_nT9L_BbbEGcCk4uLEjalg/edit?slide=id.g35b1630830e_0_169#slide=id.g35b1630830e_0_169)
+- [最終課題の企画・設計書](Blueprint.md)
+
+- [第１２回演習資料](https://docs.google.com/presentation/d/1hqpBQY4AmpkIB0ocIzcZ5_nT9L_BbbEGcCk4uLEjalg/edit?slide=id.g35b1630830e_0_169#slide=id.g35b1630830e_0_169)
 
 これからは、このプロジェクトをベースとして最終課題の制作を進めていきます。
 
