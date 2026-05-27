@@ -39,7 +39,7 @@ public class StickManager : MonoBehaviour
             }
         }
 
-        // 全部使用済みなら終了
+        // 全棒使用済み
         if (availableCount == 0)
         {
             return;
@@ -57,7 +57,7 @@ public class StickManager : MonoBehaviour
         }
     }
 
-    // 全Stick消滅確認
+    // 全棒終了確認
     public void CheckGameEnd()
     {
         foreach (Stick stick in sticks)

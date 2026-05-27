@@ -24,6 +24,7 @@ public class Stick : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+
         grab = GetComponent<XRGrabInteractable>();
 
         stickRenderer = GetComponent<Renderer>();
@@ -37,9 +38,11 @@ public class Stick : MonoBehaviour
         grab.enabled = false;
 
         grab.selectEntered.AddListener(OnGrabbed);
+
+        ResetEmission();
     }
 
-    // 棒を落下開始
+    // 棒を落下
     public void Drop()
     {
         hasDropped = true;
@@ -55,7 +58,7 @@ public class Stick : MonoBehaviour
         rb.useGravity = true;
     }
 
-    // 棒を初期位置へ戻す
+    // 棒を初期状態へ戻す
     public void ResetStick()
     {
         hasDropped = false;
@@ -65,8 +68,6 @@ public class Stick : MonoBehaviour
         isDropping = false;
 
         grab.enabled = false;
-
-        rb.isKinematic = false;
 
         rb.velocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
@@ -80,7 +81,7 @@ public class Stick : MonoBehaviour
         ResetEmission();
     }
 
-    // 床に落ちた時
+    // 床へ落下
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Floor"))
@@ -89,7 +90,7 @@ public class Stick : MonoBehaviour
         }
     }
 
-    // 掴まれた時
+    // キャッチ成功
     private void OnGrabbed(SelectEnterEventArgs args)
     {
         if (!isDropping) return;
@@ -107,7 +108,7 @@ public class Stick : MonoBehaviour
         Invoke(nameof(HideStick), 0.3f);
     }
 
-    // 棒を非表示
+    // 棒を消す
     void HideStick()
     {
         gameObject.SetActive(false);
@@ -129,5 +130,7 @@ public class Stick : MonoBehaviour
     void ResetEmission()
     {
         stickMaterial.SetColor("_EmissionColor", Color.black);
+
+        stickMaterial.DisableKeyword("_EMISSION");
     }
 }
