@@ -4,6 +4,8 @@
 
 - [最終課題の企画・設計書](Blueprint.md)
 
+- [現在までに実装したこと・仕様書](Assets/Sofar.md)
+
 - [第１２回演習資料](https://docs.google.com/presentation/d/1hqpBQY4AmpkIB0ocIzcZ5_nT9L_BbbEGcCk4uLEjalg/edit?slide=id.g35b1630830e_0_169#slide=id.g35b1630830e_0_169)
 
 これからは、このプロジェクトをベースとして最終課題の制作を進めていきます。

@@ -1,3 +1,5 @@
+// StickManager.cs
+
 using UnityEngine;
 
 public class StickManager : MonoBehaviour
@@ -6,6 +8,7 @@ public class StickManager : MonoBehaviour
 
     private bool gameStarted = false;
 
+    // ゲーム開始
     public void StartGame()
     {
         if (gameStarted) return;
@@ -15,6 +18,7 @@ public class StickManager : MonoBehaviour
         InvokeRepeating(nameof(DropRandomStick), 1f, 2f);
     }
 
+    // ゲーム停止
     public void StopGame()
     {
         gameStarted = false;
@@ -22,54 +26,50 @@ public class StickManager : MonoBehaviour
         CancelInvoke(nameof(DropRandomStick));
     }
 
+    // ランダム落下
     void DropRandomStick()
-{
-    // 未使用棒を数える
-    int availableCount = 0;
-
-    foreach (Stick stick in sticks)
     {
-        if (!stick.hasDropped)
+        int availableCount = 0;
+
+        foreach (Stick stick in sticks)
         {
-            availableCount++;
+            if (!stick.hasDropped)
+            {
+                availableCount++;
+            }
         }
-    }
 
-    // 全部使ったら停止
-    if (availableCount == 0)
-{
-    StopGame();
-
-    GameManager.Instance.ShowFinalScore();
-
-    return;
-}
-
-    // ランダム選択
-    while (true)
-    {
-        int index = Random.Range(0, sticks.Length);
-
-        if (!sticks[index].hasDropped)
-        {
-            sticks[index].Drop();
-            break;
-        }
-    }
-}
-
-public void CheckGameEnd()
-{
-    foreach (Stick stick in sticks)
-    {
-        if (stick.gameObject.activeSelf)
+        // 全部使用済みなら終了
+        if (availableCount == 0)
         {
             return;
         }
+
+        while (true)
+        {
+            int index = Random.Range(0, sticks.Length);
+
+            if (!sticks[index].hasDropped)
+            {
+                sticks[index].Drop();
+                break;
+            }
+        }
     }
 
-    StopGame();
+    // 全Stick消滅確認
+    public void CheckGameEnd()
+    {
+        foreach (Stick stick in sticks)
+        {
+            if (stick.gameObject.activeSelf)
+            {
+                return;
+            }
+        }
 
-    GameManager.Instance.ShowFinalScore();
-}
+        StopGame();
+
+        GameManager.Instance.ShowFinalScore();
+    }
 }
