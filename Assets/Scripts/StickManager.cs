@@ -1,6 +1,5 @@
-// StickManager.cs
-
 using UnityEngine;
+using System.Collections;
 
 public class StickManager : MonoBehaviour
 {
@@ -15,7 +14,7 @@ public class StickManager : MonoBehaviour
 
         gameStarted = true;
 
-        InvokeRepeating(nameof(DropRandomStick), 1f, 2f);
+        StartCoroutine(DropLoop());
     }
 
     // ゲーム停止
@@ -23,7 +22,21 @@ public class StickManager : MonoBehaviour
     {
         gameStarted = false;
 
-        CancelInvoke(nameof(DropRandomStick));
+        StopAllCoroutines();
+    }
+
+    // ランダム落下ループ
+    IEnumerator DropLoop()
+    {
+        while (gameStarted)
+        {
+            // 1〜3秒ランダム待機
+            float waitTime = Random.Range(1f, 3f);
+
+            yield return new WaitForSeconds(waitTime);
+
+            DropRandomStick();
+        }
     }
 
     // ランダム落下
