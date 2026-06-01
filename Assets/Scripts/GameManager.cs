@@ -44,9 +44,11 @@ public class GameManager : MonoBehaviour
 
     // 最終スコア表示
     public void ShowFinalScore()
-    {
-        StartCoroutine(ShowFinalScoreRoutine());
-    }
+{
+    Debug.Log("Final Score : " + score);
+
+    StartCoroutine(ShowFinalScoreRoutine());
+}
 
     IEnumerator ShowFinalScoreRoutine()
     {
@@ -65,16 +67,18 @@ public class GameManager : MonoBehaviour
 
     // リセット
     public void ResetGame()
+{
+    Debug.Log("Game Reset");
+
+    score = 0;
+
+    UpdateScoreUI();
+
+    stickManager.StopGame();
+
+    foreach (Stick stick in sticks)
     {
-        score = 0;
-
-        UpdateScoreUI();
-
-        stickManager.StopGame();
-
-        foreach (Stick stick in sticks)
-        {
-            stick.ResetStick();
-        }
+        stick.ResetStick();
     }
+}
 }

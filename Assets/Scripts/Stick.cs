@@ -83,30 +83,34 @@ public class Stick : MonoBehaviour
 
     // 床へ落下
     private void OnCollisionEnter(Collision collision)
+{
+    if (collision.gameObject.CompareTag("Floor"))
     {
-        if (collision.gameObject.CompareTag("Floor"))
-        {
-            Invoke(nameof(HideStick), 1f);
-        }
+        Debug.Log("Miss : " + gameObject.name);
+
+        Invoke(nameof(HideStick), 1f);
     }
+}
 
     // キャッチ成功
     private void OnGrabbed(SelectEnterEventArgs args)
-    {
-        if (!isDropping) return;
+{
+    if (!isDropping) return;
 
-        if (isCaught) return;
+    if (isCaught) return;
 
-        isCaught = true;
+    Debug.Log("Catch : " + gameObject.name);
 
-        GameManager.Instance.AddScore();
+    isCaught = true;
 
-        audioSource.Play();
+    GameManager.Instance.AddScore();
 
-        Flash();
+    audioSource.Play();
 
-        Invoke(nameof(HideStick), 0.3f);
-    }
+    Flash();
+
+    Invoke(nameof(HideStick), 0.3f);
+}
 
     // 棒を消す
     void HideStick()
