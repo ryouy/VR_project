@@ -88,6 +88,8 @@ public class Stick : MonoBehaviour
     {
         Debug.Log("Miss : " + gameObject.name);
 
+        FindObjectOfType<GameMachine>()?.OnMiss();
+
         Invoke(nameof(HideStick), 1f);
     }
 }
@@ -108,6 +110,8 @@ public class Stick : MonoBehaviour
     audioSource.Play();
 
     Flash();
+
+    FindObjectOfType<GameMachine>()?.OnCatch();
 
     Invoke(nameof(HideStick), 0.3f);
 }

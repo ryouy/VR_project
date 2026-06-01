@@ -16,6 +16,8 @@ public class GameManager : MonoBehaviour
 
     public AudioSource finalScoreSE;
 
+    public GameMachine gameMachine;
+
     private int score = 0;
 
     void Awake()
@@ -24,9 +26,11 @@ public class GameManager : MonoBehaviour
     }
 
     void Start()
-    {
-        UpdateScoreUI();
-    }
+{
+    UpdateScoreUI();
+
+    gameMachine.SetIdleMode();
+}
 
     // スコア加算
     public void AddScore()
@@ -51,19 +55,17 @@ public class GameManager : MonoBehaviour
 }
 
     IEnumerator ShowFinalScoreRoutine()
-    {
-        // 少し待つ
-        yield return new WaitForSeconds(1.5f);
+{
+    gameMachine.GameFinished();
 
-        // SE再生
-        finalScoreSE.Play();
+    yield return new WaitForSeconds(1.5f);
 
-        // 少し待つ
-        yield return new WaitForSeconds(1.0f);
+    finalScoreSE.Play();
 
-        // 最終スコア表示
-        scoreText.text = "FINAL SCORE : " + score;
-    }
+    yield return new WaitForSeconds(1.0f);
+
+    scoreText.text = "FINAL SCORE : " + score;
+}
 
     // リセット
     public void ResetGame()
@@ -80,5 +82,7 @@ public class GameManager : MonoBehaviour
     {
         stick.ResetStick();
     }
+
+    gameMachine.SetIdleMode();
 }
 }
