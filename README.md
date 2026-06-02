@@ -1,7 +1,7 @@
 # VR Catch Stick Game
 
 Unity と XR Hands を使った、ハンドトラッキング操作の VR 反射神経ゲームです。
-[unityroom](https://unityroom.com/games/stick_catch)
+- [unityroomでプレイ](https://unityroom.com/games/stick_catch)
 
 ## Documents
 
