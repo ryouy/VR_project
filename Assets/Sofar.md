@@ -137,6 +137,39 @@ STARTボタンを押すとゲームが開始される。
 - `HideStick()` で非表示
 - 非表示後に終了判定を実行
 
+### 12. ゲーム筐体フィードバック演出
+
+ゲームの状態やプレイヤーの結果が分かりやすくなるよう、ゲーム筐体の色と揺れによる演出を追加した。
+
+- `GameMachine.cs` を追加
+- 待機中はシアンで表示
+- キャッチ成功時は黄色に変化して小さく揺れる
+- ミス時は赤色に変化して大きく揺れる
+- ゲーム終了時は虹色に変化する
+- リセット時は待機状態へ戻る
+
+### 13. 外観モデル追加
+
+ゲーム空間の見た目を強化するため、建物やタワーの3Dモデルを追加した。
+
+- `Building.fbx` 追加
+- `tower.fbx` 追加
+- 建物用マテリアル `red.mat` 追加
+- `FinalProject.unity` へ外観オブジェクトを配置
+
+### 14. WebGLビルドと公開
+
+Unity WebGL向けにビルドし、ブラウザから遊べる形にした。
+
+- `web/` フォルダにWebGLビルド一式を追加
+- WebGL用の圧縮設定を有効化
+- READMEにunityroomのプレイリンクを追加
+- unityroomで公開
+
+```text
+https://unityroom.com/games/stick_catch
+```
+
 ## シーン構成
 
 ```text
@@ -155,6 +188,9 @@ Scene
 ├── StickManager
 ├── Canvas
 ├── GameManager
+├── GameMachine
+├── Building
+├── tower
 └── AudioManager
 ```
 
@@ -185,10 +221,19 @@ Scene
 - FINAL SCORE表示
 - リセット管理
 - FinalScoreSE再生
+- GameMachineの状態切り替え
 
 ### ButtonSE.cs
 
 - UIボタンSE再生
+
+### GameMachine.cs
+
+- 待機状態の色管理
+- キャッチ成功時の色変化と小さい揺れ
+- ミス時の色変化と大きい揺れ
+- ゲーム終了時の虹色演出
+- リセット時の演出停止
 
 ## 使用技術
 
@@ -200,6 +245,9 @@ Scene
 - Rigidbody Physics
 - AudioSource
 - URP Lit Shader
+- FBX Model
+- Unity WebGL
+- unityroom
 
 ## 到達目標
 
@@ -210,3 +258,5 @@ Scene
 - スコア管理を実装する
 - SEと演出を追加する
 - リセットと最終スコア表示を実装する
+- 外観モデルを追加してゲーム空間を作る
+- WebGLビルドを作成して公開する
