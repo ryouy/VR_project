@@ -9,13 +9,15 @@ public class StickManager : MonoBehaviour
 
     // ゲーム開始
     public void StartGame()
-    {
-        if (gameStarted) return;
+{
+    if (gameStarted) return;
 
-        gameStarted = true;
+    Debug.Log("Game Start");
 
-        StartCoroutine(DropLoop());
-    }
+    gameStarted = true;
+
+    StartCoroutine(DropLoop());
+}
 
     // ゲーム停止
     public void StopGame()
@@ -72,17 +74,19 @@ public class StickManager : MonoBehaviour
 
     // 全棒終了確認
     public void CheckGameEnd()
+{
+    foreach (Stick stick in sticks)
     {
-        foreach (Stick stick in sticks)
+        if (stick.gameObject.activeSelf)
         {
-            if (stick.gameObject.activeSelf)
-            {
-                return;
-            }
+            return;
         }
-
-        StopGame();
-
-        GameManager.Instance.ShowFinalScore();
     }
+
+    Debug.Log("Game Finished");
+
+    StopGame();
+
+    GameManager.Instance.ShowFinalScore();
+}
 }
