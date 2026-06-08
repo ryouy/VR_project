@@ -7,6 +7,7 @@ Unity と XR Hands を使った、ハンドトラッキング操作の VR 反射
 
 - [企画・設計書](Blueprint.md)
 - [実装仕様書](Assets/Sofar.md)
+- [発表スライド](VR_presentation.pdf)
 
 ## Environment
 
